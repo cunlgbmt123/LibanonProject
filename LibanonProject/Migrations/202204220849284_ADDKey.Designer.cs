@@ -7,13 +7,13 @@ namespace LibanonProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class datav2 : IMigrationMetadata
+    public sealed partial class ADDKey : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(datav2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ADDKey));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204211049558_datav2"; }
+            get { return "202204220849284_ADDKey"; }
         }
         
         string IMigrationMetadata.Source

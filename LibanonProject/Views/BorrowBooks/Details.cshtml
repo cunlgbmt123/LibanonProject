@@ -1,0 +1,43 @@
+﻿@model LibanonProject.Models.BorrowBook
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BorrowBook</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Currentbook.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currentbook.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentUser.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentUser.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

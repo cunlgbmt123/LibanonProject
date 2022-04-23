@@ -9,6 +9,9 @@ namespace LibanonProject.Models
         {
             this.HasKey(s => s.UserId);
             this.Property(p => p.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+
+
         }
     }
 }

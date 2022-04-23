@@ -164,18 +164,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\BorrowBooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202204210926059_datav1.cs" />
-    <Compile Include="Migrations\202204210926059_datav1.designer.cs">
-      <DependentUpon>202204210926059_datav1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204211049558_datav2.cs" />
-    <Compile Include="Migrations\202204211049558_datav2.designer.cs">
-      <DependentUpon>202204211049558_datav2.cs</DependentUpon>
+    <Compile Include="Migrations\202204220849284_ADDKey.cs" />
+    <Compile Include="Migrations\202204220849284_ADDKey.designer.cs">
+      <DependentUpon>202204220849284_ADDKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
@@ -183,6 +181,8 @@
     <Compile Include="Models\BookEntityConfiguration.cs" />
     <Compile Include="Models\BookISBN.cs" />
     <Compile Include="Models\BookISBNEntityConfiguration.cs" />
+    <Compile Include="Models\BorrowBook.cs" />
+    <Compile Include="Models\BorrowBookEntityConfiguration.cs" />
     <Compile Include="Models\IBookContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserEntityConfiguration.cs" />
@@ -238,16 +238,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Books\Delete.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\BookISBNs\Create.cshtml" />
-    <Content Include="Views\BookISBNs\Delete.cshtml" />
-    <Content Include="Views\BookISBNs\Details.cshtml" />
-    <Content Include="Views\BookISBNs\Edit.cshtml" />
-    <Content Include="Views\BookISBNs\Index.cshtml" />
+    <Content Include="Views\BorrowBooks\Create.cshtml" />
+    <Content Include="Views\BorrowBooks\Delete.cshtml" />
+    <Content Include="Views\BorrowBooks\Details.cshtml" />
+    <Content Include="Views\BorrowBooks\Edit.cshtml" />
+    <Content Include="Views\BorrowBooks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,11 +288,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204210926059_datav1.resx">
-      <DependentUpon>202204210926059_datav1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204211049558_datav2.resx">
-      <DependentUpon>202204211049558_datav2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204220849284_ADDKey.resx">
+      <DependentUpon>202204220849284_ADDKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
