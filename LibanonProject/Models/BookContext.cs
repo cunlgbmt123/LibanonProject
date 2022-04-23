@@ -15,6 +15,7 @@ namespace LibanonProject.Models
         public DbSet<Book> books { get; set; }
         public DbSet<BookISBN> bookISBN { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<BorrowBook> BorrowBooks { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,9 +25,10 @@ namespace LibanonProject.Models
 
             modelBuilder.Configurations.Add(new UserEntityConfiguration());
 
-            
+            modelBuilder.Configurations.Add(new BorrowBookEntityConfiguration());
         }
-      
+
+        
     }
     
 }
