@@ -15,9 +15,7 @@ namespace LibanonProject.Models
                 .HasForeignKey<int>(s => s.CurrentBookId);
 
 
-            this.HasRequired<User>(s => s.CurrentUser)
-                .WithMany(g => g.BorrowBooks)
-                .HasForeignKey<int>(s => s.CurrentUserId);
+            
                
         }
     }

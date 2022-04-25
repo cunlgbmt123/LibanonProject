@@ -41,7 +41,8 @@ namespace LibanonProject.Repository
             Book books = db.books.Find(id);
             return books;
         }
-
+        
+        
         public bool Update(Book item)
         {
             if(item == null)
@@ -55,8 +56,11 @@ namespace LibanonProject.Repository
             books.Publisher = item.Publisher;
             books.Category = item.Category;
             books.Summary = item.Summary;
-            books.CurrentUserId = item.CurrentUserId;
-            books.BookISBN = item.BookISBN;
+            books.OwnerName = item.OwnerName;
+            books.OwnerEmail = item.OwnerEmail;
+            books.OwnerPhone = item.OwnerPhone;            
+            books.OTP = item.OTP;
+            
             db.SaveChanges();
             return true;
         }

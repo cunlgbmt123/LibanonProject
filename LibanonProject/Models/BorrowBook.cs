@@ -18,8 +18,7 @@ namespace LibanonProject.Models
         public int CurrentBookId  { get; set; }
         public virtual Book Currentbook { get; set; }
 
-        public int CurrentUserId { get; set; }
-        public virtual User CurrentUser { get; set; } 
+     
 
 
     }

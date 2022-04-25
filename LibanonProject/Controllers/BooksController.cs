@@ -17,12 +17,12 @@ namespace LibanonProject.Controllers
     public class BooksController : Controller
     {
         readonly IBookRepo _bookRepo;
-        readonly IUserRepo _userRepo;
+       
         
-        public BooksController(IBookRepo bookRepos, IUserRepo userRepo)
+        public BooksController(IBookRepo bookRepos)
         {
             this._bookRepo = bookRepos;
-            this._userRepo = userRepo;
+            
         }
 
         
@@ -49,7 +49,7 @@ namespace LibanonProject.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            ViewBag.CurrentUserId = new SelectList(_userRepo.GetAll(), "UserId", "UserName");
+            
             return View();
         }
 
@@ -80,11 +80,11 @@ namespace LibanonProject.Controllers
                         book.BookStatus = false;
                         
                 }
-               
+                
                 book.ActiveCode = Guid.NewGuid();
                 _bookRepo.Add(book);
                 VerificationEmail(book.OwnerEmail, book.ActiveCode.ToString());
-                messageRegistration = "Tài khoản của bạn được tạo thành công. Vui lòng kiểm tra email của bạn để xác thực email";
+                messageRegistration = "Sách của bạn được tạo thành công. Vui lòng kiểm tra email của bạn để xác thực email";
                 statusRegistration = true;
                 }
                
@@ -95,18 +95,19 @@ namespace LibanonProject.Controllers
                 ViewBag.Message = messageRegistration;
                 ViewBag.Status = statusRegistration;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ThongBao");
         }
         #endregion
 
 
         #region Update với OTP
+
+
         // GET: Books/Edit/5
         public ActionResult Edit(int id)
         {
             
-            Book book = _bookRepo.GetById(id);
-            ViewBag.CurrentUserId = new SelectList(_userRepo.GetAll(), "UserId", "UserEmail", book.CurrentUserId);
+            var book = _bookRepo.GetById(id);
             return View(book);
         }
 
@@ -115,18 +116,22 @@ namespace LibanonProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Book book, HttpPostedFileBase ImageURL,int id)
+        public ActionResult Edit(Book book, HttpPostedFileBase ImageURL, int? id)
         {
-            var getFileName = _bookRepo.GetById(book.BookId).Image;
-            book.Image = getFileName;
             bool statusRegistration = false;
             string messageRegistration = string.Empty;
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var getFileName = _bookRepo.GetById(book.BookId).Image.ToString();
+            book.Image = getFileName;
+            
             if (ImageURL != null)
             {
-
-               
-
+                if(ImageURL.ContentLength>0)
+                {
                     getFileName = Path.GetFileName(ImageURL.FileName);
                     var getFilePath = Path.Combine(Server.MapPath("~/Content/IMG/"), getFileName);
                     if (System.IO.File.Exists(getFilePath))
@@ -136,13 +141,14 @@ namespace LibanonProject.Controllers
                     ImageURL.SaveAs(getFilePath);
                     book.Image = getFileName;
                     book.BookStatus = false;
-
-                
-
+                }
+                Random ran = new Random();
+                book.OTP = ran.Next(100000, 999999).ToString();
+                TempData["OTP"] = book.OTP;
                 book.ActiveCode = Guid.NewGuid();
-                _bookRepo.Add(book);
+                _bookRepo.Update(book);
                 VerifyOTP(book.OwnerEmail, book.OTP.ToString());
-                messageRegistration = "Tài khoản của bạn được tạo thành công. Vui lòng kiểm tra email của bạn để xác thực email";
+                messageRegistration = "Vui lòng xác thực OTP để tạo sách";
                 statusRegistration = true;
             }
 
@@ -153,37 +159,54 @@ namespace LibanonProject.Controllers
             ViewBag.Message = messageRegistration;
             ViewBag.Status = statusRegistration;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ActivationOTP");
         }
         #endregion
+        
+        
 
-
-
-
+        public ActionResult ThongBao()
+        {
+            return View();
+        }
+        
         [HttpGet]
-        public ActionResult ActivationOTP(string id)
+        public ActionResult ActivationOTP(string id, Book book)
         {
            
-            
+           
             bool statusBook = false;
+            var books = _bookRepo.GetAll().Where(u => u.ActiveCode.ToString().Equals(id)).FirstOrDefault();
+            var code = book.OTP;
+            string OTP;
 
-            var book = _bookRepo.GetAll().Where(u => u.ActiveCode.ToString().Equals(id)).FirstOrDefault();
-
-            if (book != null)
+            if (books != null)
             {
-                book.BookStatus = true;
-
-                statusBook = true;
-               
+                if(TempData.ContainsKey("OTP"))
+                {
+                    OTP = TempData["OTP"].ToString();
+                    if(code.Equals(OTP))
+                    {
+                        books.BookStatus = true;
+                        _bookRepo.Update(books);
+                        statusBook = true;
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        books.BookStatus = true;
+                        _bookRepo.Update(books);
+                    }
+                } 
             }
             else
             {
+                
                 ViewBag.Message = "Có lỗi gì đó !!";
+                
             }
-
-
             ViewBag.Status = statusBook;
-            return View();
+            return RedirectToAction("Index");
         }
          [NonAction]
         public void VerifyOTP(string email, string OTPCode)
@@ -221,7 +244,7 @@ namespace LibanonProject.Controllers
 
                 smtp.Send(message);
         }
-        #region Gửi xác thực email sau khi add book hoặc update
+        #region Gửi xác thực email sau khi add book 
         [HttpGet]
         public ActionResult ActivationBook(string id)
         {

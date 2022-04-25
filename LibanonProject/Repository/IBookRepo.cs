@@ -13,6 +13,7 @@ namespace LibanonProject.Repository
         
         IEnumerable<Book> GetAll();
         Book GetById(int id);
+        
         bool  Add(Book item);
         bool Update(Book item);
         

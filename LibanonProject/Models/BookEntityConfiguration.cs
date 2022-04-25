@@ -16,10 +16,7 @@ namespace LibanonProject.Models
             this.HasRequired(s => s.BookISBN)
                  .WithRequiredPrincipal(a => a.Book);
 
-            this.HasRequired<User>(s => s.CurrentUser)
-                .WithMany(g => g.Book)
-                .HasForeignKey<int>(s => s.CurrentUserId);
-
+           
             
                  
 

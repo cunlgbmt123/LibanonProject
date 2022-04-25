@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ADDKey : DbMigration
+    public partial class Updatemodel : DbMigration
     {
         public override void Up()
         {
@@ -11,12 +11,12 @@
                 "dbo.BookISBNs",
                 c => new
                     {
-                        ISBNId = c.Int(nullable: false, identity: true),
-                        ISBNcode = c.String(nullable: false, maxLength: 10),
+                        ISBNId = c.Int(nullable: false),
+                        ISBNcode = c.String(),
                         Rating = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.ISBNId)
-                .ForeignKey("dbo.Book", t => t.ISBNId, cascadeDelete: false)
+                .ForeignKey("dbo.Book", t => t.ISBNId)
                 .Index(t => t.ISBNId);
             
             CreateTable(
@@ -30,52 +30,41 @@
                         Publisher = c.DateTime(nullable: false),
                         Category = c.String(),
                         Summary = c.String(),
+                        BookStatus = c.Boolean(),
+                        OwnerName = c.String(),
+                        OwnerEmail = c.String(),
+                        OwnerPhone = c.String(),
+                        ActiveCode = c.Guid(nullable: false),
+                        OTP = c.String(),
                         IsBorrow = c.Boolean(nullable: false),
-                        CurrentUserId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.BookId)
-                .ForeignKey("dbo.Users", t => t.CurrentUserId, cascadeDelete: true)
-                .Index(t => t.CurrentUserId);
+                .PrimaryKey(t => t.BookId);
             
             CreateTable(
                 "dbo.BorrowBooks",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Status = c.String(),
+                        Status = c.Boolean(),
+                        BUser = c.String(),
+                        BEmail = c.String(),
+                        BPhone = c.String(),
+                        ActiveCode = c.Guid(nullable: false),
+                        OTP = c.String(),
                         CurrentBookId = c.Int(nullable: false),
-                        CurrentUserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Book", t => t.CurrentBookId, cascadeDelete: false)
-                .ForeignKey("dbo.Users", t => t.CurrentUserId, cascadeDelete: false)
-                .Index(t => t.CurrentBookId)
-                .Index(t => t.CurrentUserId);
-            
-            CreateTable(
-                "dbo.Users",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false, identity: true),
-                        UserName = c.String(),
-                        UserEmail = c.String(),
-                        UserPhone = c.String(),
-                    })
-                .PrimaryKey(t => t.UserId);
+                .ForeignKey("dbo.Book", t => t.CurrentBookId, cascadeDelete: true)
+                .Index(t => t.CurrentBookId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Book", "CurrentUserId", "dbo.Users");
-            DropForeignKey("dbo.BorrowBooks", "CurrentUserId", "dbo.Users");
             DropForeignKey("dbo.BorrowBooks", "CurrentBookId", "dbo.Book");
             DropForeignKey("dbo.BookISBNs", "ISBNId", "dbo.Book");
-            DropIndex("dbo.BorrowBooks", new[] { "CurrentUserId" });
             DropIndex("dbo.BorrowBooks", new[] { "CurrentBookId" });
-            DropIndex("dbo.Book", new[] { "CurrentUserId" });
             DropIndex("dbo.BookISBNs", new[] { "ISBNId" });
-            DropTable("dbo.Users");
             DropTable("dbo.BorrowBooks");
             DropTable("dbo.Book");
             DropTable("dbo.BookISBNs");

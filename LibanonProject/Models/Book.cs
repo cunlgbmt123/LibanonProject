@@ -36,8 +36,7 @@ namespace LibanonProject.Models
 
         public virtual BookISBN BookISBN { get; set; }
 
-        public int CurrentUserId { get; set; }
-        public virtual User CurrentUser { get; set; }
+       
 
         public  ICollection<BorrowBook> BorrowBooks { get; set; }
 
