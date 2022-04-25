@@ -11,13 +11,7 @@
     <h4>Book</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentUser.UserName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentUser.UserName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -40,7 +34,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content("~/Content/IMG/"+Model.Image)" style="width:150px; height:200px;margin:10px;" />
+           @* @Html.DisplayFor(model => model.Image)*@
         </dd>
 
         <dt>
@@ -66,18 +61,17 @@
         <dd>
             @Html.DisplayFor(model => model.Summary)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IsBorrow)
+            Owner
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsBorrow)
+            @Html.DisplayFor(model => model.CurrentUser.UserEmail)
         </dd>
-
     </dl>
 </div>
 <p>
+
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

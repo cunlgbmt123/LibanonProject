@@ -6,7 +6,7 @@ using System.Web;
 
 namespace LibanonProject.Models
 {
-    public class BookContext : DbContext, IBookContext
+    public class BookContext : DbContext
     {
         public BookContext() : base("name=DefaultConnection")
         {
@@ -21,7 +21,7 @@ namespace LibanonProject.Models
         {
             modelBuilder.Configurations.Add(new BookEntityConfiguration());
 
-            modelBuilder.Configurations.Add(new BookISBNEntityConfiguration());
+           
 
             modelBuilder.Configurations.Add(new UserEntityConfiguration());
 

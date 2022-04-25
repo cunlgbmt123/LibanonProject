@@ -13,13 +13,15 @@ namespace LibanonProject.Models
             this.HasKey<int>(s => s.BookId);
             this.Property(p => p.BookId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            this.HasRequired(s => s.BookISBN)
+                 .WithRequiredPrincipal(a => a.Book);
+
             this.HasRequired<User>(s => s.CurrentUser)
                 .WithMany(g => g.Book)
                 .HasForeignKey<int>(s => s.CurrentUserId);
 
-            this.HasRequired(s => s.BookISBN)
-                 .WithRequiredPrincipal(ad => ad.Book)
-                 .WillCascadeOnDelete(true);
+            
+                 
 
             
         }

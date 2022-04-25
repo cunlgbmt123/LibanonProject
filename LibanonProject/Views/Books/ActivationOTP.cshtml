@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ActivationOTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ActivationOTP</h2>
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    <div class="alert alert-success">
+        <strong>Thành công!</strong>Cảm ơn bạn đã xác nhận thành công! Bạn có thể
+        <a href="@Url.Action("Index")" class="text-center">Tới Xem Danh Sách</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Lỗi!</strong>@ViewBag.Message
+    </div>
+}

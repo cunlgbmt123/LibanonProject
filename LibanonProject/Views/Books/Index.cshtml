@@ -10,11 +10,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table f">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CurrentUser.UserName)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -33,17 +31,24 @@
         <th>
             @Html.DisplayNameFor(model => model.Summary)
         </th>
+        
         <th>
-            @Html.DisplayNameFor(model => model.IsBorrow)
+            @Html.DisplayNameFor(model => model.OwnerName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerPhone)
+        </th>
+        
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentUser.UserName)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -51,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.Author)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            <img src="@Url.Content("~/Content/IMG/" + item.Image)" style="width:150px; height:200px;margin:10px;" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Publisher)
@@ -62,13 +67,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Summary)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.IsBorrow)
+            @Html.DisplayFor(modelItem => item.OwnerName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |
+            @Html.DisplayFor(modelItem => item.OwnerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerPhone)
+        </td>
+        
+        
+        <td>
+           
             @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
+           
         </td>
     </tr>
 }
