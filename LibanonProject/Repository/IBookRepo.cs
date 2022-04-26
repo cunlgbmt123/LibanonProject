@@ -16,6 +16,6 @@ namespace LibanonProject.Repository
         
         bool  Add(Book item);
         bool Update(Book item);
-        
+        bool ChangeState(Book item);
     }
 }
