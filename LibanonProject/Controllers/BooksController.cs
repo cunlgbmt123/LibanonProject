@@ -155,7 +155,7 @@ namespace LibanonProject.Controllers
 
             return RedirectToAction("ActivationOTP");
         }
-        #endregion
+        
 
         public ActionResult ThongBao()
         {
@@ -186,6 +186,7 @@ namespace LibanonProject.Controllers
             
             
         }
+        #endregion
 
         #region Gửi xác thực email sau khi add book 
         [HttpGet]
