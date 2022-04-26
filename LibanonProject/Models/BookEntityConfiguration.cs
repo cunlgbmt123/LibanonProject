@@ -16,11 +16,13 @@ namespace LibanonProject.Models
             this.HasRequired(s => s.BookISBN)
                  .WithRequiredPrincipal(a => a.Book);
 
-           
-            
-                 
+            this.HasRequired(s => s.User)
+                  .WithRequiredPrincipal(a => a.Book);
 
-            
+            this.HasRequired(s => s.State)
+                  .WithRequiredPrincipal(a => a.Book);
+
+
         }
        
     }

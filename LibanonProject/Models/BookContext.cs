@@ -14,9 +14,9 @@ namespace LibanonProject.Models
         }
         public DbSet<Book> books { get; set; }
         public DbSet<BookISBN> bookISBN { get; set; }
-        
+        public DbSet<User> User { get; set; }
         public DbSet<BorrowBook> BorrowBooks { get; set; }
-        
+        public DbSet<State> State { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BookEntityConfiguration());

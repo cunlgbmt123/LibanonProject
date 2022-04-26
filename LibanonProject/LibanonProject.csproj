@@ -205,6 +205,22 @@
     <Compile Include="Migrations\202204250648409_Update-model.designer.cs">
       <DependentUpon>202204250648409_Update-model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204260728137_changeModelN.cs" />
+    <Compile Include="Migrations\202204260728137_changeModelN.designer.cs">
+      <DependentUpon>202204260728137_changeModelN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204260800397_changeMo.cs" />
+    <Compile Include="Migrations\202204260800397_changeMo.designer.cs">
+      <DependentUpon>202204260800397_changeMo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204260807536_changeMod.cs" />
+    <Compile Include="Migrations\202204260807536_changeMod.designer.cs">
+      <DependentUpon>202204260807536_changeMod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204260857451_changeModq.cs" />
+    <Compile Include="Migrations\202204260857451_changeModq.designer.cs">
+      <DependentUpon>202204260857451_changeModq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookContext.cs" />
@@ -212,6 +228,8 @@
     <Compile Include="Models\BookISBN.cs" />
     <Compile Include="Models\BorrowBook.cs" />
     <Compile Include="Models\BorrowBookEntityConfiguration.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BookRepo.cs" />
     <Compile Include="Repository\BorrowRepo.cs" />
@@ -268,9 +286,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Books\ActivationBook.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
@@ -278,10 +293,9 @@
     <Content Include="Views\Books\ThongBao.cshtml" />
     <Content Include="Views\Books\ActivationOTP.cshtml" />
     <Content Include="Views\BorrowBooks\Create.cshtml" />
-    <Content Include="Views\BorrowBooks\Delete.cshtml" />
-    <Content Include="Views\BorrowBooks\Details.cshtml" />
-    <Content Include="Views\BorrowBooks\Edit.cshtml" />
-    <Content Include="Views\BorrowBooks\Index.cshtml" />
+    <Content Include="Views\Books\BorrowBook.cshtml" />
+    <Content Include="Views\Books\BookIsBorrow.cshtml" />
+    <Content Include="Views\Books\Return.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +333,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204250648409_Update-model.resx">
       <DependentUpon>202204250648409_Update-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204260728137_changeModelN.resx">
+      <DependentUpon>202204260728137_changeModelN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204260800397_changeMo.resx">
+      <DependentUpon>202204260800397_changeMo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204260807536_changeMod.resx">
+      <DependentUpon>202204260807536_changeMod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204260857451_changeModq.resx">
+      <DependentUpon>202204260857451_changeModq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

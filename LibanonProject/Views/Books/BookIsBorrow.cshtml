@@ -1,18 +1,15 @@
 ﻿@model IEnumerable<LibanonProject.Models.Book>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "BookIsBorrow";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>List Borrowed </h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table f">
+
+<table class="table">
     <tr>
-        
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -33,13 +30,13 @@
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            @Html.DisplayNameFor(model => model.BorrowerName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.UserEmail)
+            @Html.DisplayNameFor(model => model.BorrowerEmail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookISBN.ISBNcode)
+            @Html.DisplayNameFor(model => model.BorrowerPhone)
         </th>
         
         
@@ -48,7 +45,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -57,7 +53,6 @@
         </td>
         <td>
             <img src="@Url.Content("~/Content/IMG/" + item.Image)" style="width:150px; height:200px;margin:10px;" />
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Publisher)
         </td>
@@ -69,20 +64,19 @@
         </td>
         
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.DisplayFor(modelItem => item.BorrowerName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserEmail)
+            @Html.DisplayFor(modelItem => item.BorrowerEmail)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BookISBN.ISBNcode)
+            @Html.DisplayFor(modelItem => item.BorrowerPhone)
         </td>
         
         
         <td>
-           
-            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
-           
+            @Html.ActionLink("Return", "Return", new { id=item.BookId })
+            
         </td>
     </tr>
 }

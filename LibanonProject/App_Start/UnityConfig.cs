@@ -17,8 +17,9 @@ namespace LibanonProject
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IBookRepo, BookRepo>();
 
+            container.RegisterType<IBorrowRepo, BorrowRepo>();
 
-            
+
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

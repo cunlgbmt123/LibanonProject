@@ -35,7 +35,7 @@
 
         <dd>
             <img src="@Url.Content("~/Content/IMG/"+Model.Image)" style="width:150px; height:200px;margin:10px;" />
-           @* @Html.DisplayFor(model => model.Image)*@
+            @* @Html.DisplayFor(model => model.Image)*@
         </dd>
 
         <dt>
@@ -61,13 +61,33 @@
         <dd>
             @Html.DisplayFor(model => model.Summary)
         </dd>
-        
+        <dt>
+            @Html.DisplayNameFor(model => model.BookISBN.ISBNcode)
+        </dt>
 
-        
+        <dd>
+            @Html.DisplayFor(model => model.BookISBN.ISBNcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserEmail)
+        </dd>
+
+
+
     </dl>
 </div>
 <p>
-
+    @Html.ActionLink("BorrowBook", "BorrowBook", new { id = Model.BookId }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

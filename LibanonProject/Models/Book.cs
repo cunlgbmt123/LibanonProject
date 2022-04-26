@@ -23,11 +23,10 @@ namespace LibanonProject.Models
         public string Category { get; set; }
         public string Summary { get; set; }
         public bool? BookStatus { get; set; }
-        public string OwnerName { get; set; }
-        public string OwnerEmail { get; set; }
-        public string OwnerPhone { get; set; }
-        public Guid ActiveCode { get; set; }
-        public string OTP { get; set; }
+        public string BorrowerName { get; set; }
+        public string BorrowerEmail { get; set; }
+        public string BorrowerPhone { get; set; }
+        public Guid Code { get; set; }
         public bool IsBorrow { get; set; }
 
         [NotMapped]
@@ -36,10 +35,10 @@ namespace LibanonProject.Models
 
         public virtual BookISBN BookISBN { get; set; }
 
-       
+       public virtual User User { get; set; }
 
         public  ICollection<BorrowBook> BorrowBooks { get; set; }
 
-
+        public virtual State State { get; set; }
     }
 }
