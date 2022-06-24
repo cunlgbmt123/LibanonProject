@@ -77,7 +77,7 @@ namespace LibanonProject.Repository
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("mhoangd2000@gmail.com", "minhhoangdm185050247");
+            smtp.Credentials = new System.Net.NetworkCredential("mhoangd2000@gmail.com", "ugviarlloyyajgvr");
             smtp.EnableSsl = true;
             smtp.Send(mail);
         }
